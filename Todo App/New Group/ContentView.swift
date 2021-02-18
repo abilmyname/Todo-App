@@ -17,30 +17,36 @@ struct ContentView: View {
   
   var body: some View {
     NavigationView{
-      List{
-        ForEach(self.todos, id: \.self){ todo in
-          HStack{
-            Text(todo.name ?? "Unknown")
-            
-            Spacer()
-            
-            Text(todo.priority ?? "Unknown")
+      ZStack{
+        List{
+          ForEach(self.todos, id: \.self){ todo in
+            HStack{
+              Text(todo.name ?? "Unknown")
+              
+              Spacer()
+              
+              Text(todo.priority ?? "Unknown")
+            }
           }
+          .onDelete(perform: deleteTodo)
         }
-        .onDelete(perform: deleteTodo)
+        .navigationBarTitle("Todo", displayMode: .inline)
+        .navigationBarItems(leading: EditButton(),
+                            trailing:
+                              Button(action: {
+                                self.showingAddTodoView.toggle()
+                              }){
+                                Image(systemName: "plus")
+                              }
+                              .sheet(isPresented: $showingAddTodoView){
+                                AddTodoView().environment(\.managedObjectContext, self.managedObjectContext)
+                              }
+        )
+        
+        if todos.count == 0{
+          EmptyListView()
+        }
       }
-      .navigationBarTitle("Todo", displayMode: .inline)
-      .navigationBarItems(leading: EditButton(),
-                          trailing:
-                            Button(action: {
-                              self.showingAddTodoView.toggle()
-                            }){
-                              Image(systemName: "plus")
-                            }
-                            .sheet(isPresented: $showingAddTodoView){
-                              AddTodoView().environment(\.managedObjectContext, self.managedObjectContext)
-                            }
-      )
     }
   }
   

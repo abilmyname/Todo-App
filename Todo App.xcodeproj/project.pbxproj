@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04BACB2725DE19FD00B53C13 /* EmptyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BACB2625DE19FD00B53C13 /* EmptyListView.swift */; };
 		04FAC82525DA1E2300DA9A64 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FAC82425DA1E2300DA9A64 /* AppDelegate.swift */; };
 		04FAC82725DA1E2400DA9A64 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FAC82625DA1E2400DA9A64 /* SceneDelegate.swift */; };
 		04FAC82925DA1E2500DA9A64 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FAC82825DA1E2500DA9A64 /* ContentView.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04BACB2625DE19FD00B53C13 /* EmptyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyListView.swift; sourceTree = "<group>"; };
 		04FAC82125DA1E2300DA9A64 /* Todo App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Todo App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04FAC82425DA1E2300DA9A64 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04FAC82625DA1E2400DA9A64 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 			children = (
 				04FAC82825DA1E2500DA9A64 /* ContentView.swift */,
 				04FAC83D25DA1F2700DA9A64 /* AddTodoView.swift */,
+				04BACB2625DE19FD00B53C13 /* EmptyListView.swift */,
 			);
 			name = View;
 			path = "New Group";
@@ -162,6 +165,7 @@
 			files = (
 				04FAC82525DA1E2300DA9A64 /* AppDelegate.swift in Sources */,
 				04FAC82725DA1E2400DA9A64 /* SceneDelegate.swift in Sources */,
+				04BACB2725DE19FD00B53C13 /* EmptyListView.swift in Sources */,
 				04FAC82925DA1E2500DA9A64 /* ContentView.swift in Sources */,
 				04FAC82C25DA1E2500DA9A64 /* Todo_App.xcdatamodeld in Sources */,
 				04FAC83E25DA1F2700DA9A64 /* AddTodoView.swift in Sources */,
