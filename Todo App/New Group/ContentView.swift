@@ -47,6 +47,24 @@ struct ContentView: View {
           EmptyListView()
         }
       }
+      .sheet(isPresented: $showingAddTodoView){
+        AddTodoView().environment(\.managedObjectContext, self.managedObjectContext)
+      }
+      .overlay(
+        ZStack{
+          Button(action: {
+            self.showingAddTodoView.toggle()
+          }){
+            Image(systemName: "plus.circle.fill")
+              .resizable()
+              .scaledToFit()
+              .background(Circle().fill(Color("ColorBase")))
+              .frame(width: 48, height: 48, alignment: .center)
+          }
+        }
+        .padding(.bottom, 15)
+        .padding(.trailing, 15), alignment: .bottomTrailing
+      )
     }
   }
   
