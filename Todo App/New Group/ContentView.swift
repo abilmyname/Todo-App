@@ -18,23 +18,37 @@ struct ContentView: View {
   
   @EnvironmentObject var iconSettings: IconNames
   
+  @ObservedObject var theme = ThemeSettings.shared
+  var themes: [Theme] = themeData
+  
   var body: some View {
     NavigationView{
       ZStack{
         List{
           ForEach(self.todos, id: \.self){ todo in
             HStack{
+              Circle()
+                .frame(width: 12, height: 12, alignment: .center)
+                .foregroundColor(self.colorize(priority: todo.priority ?? "Normal"))
               Text(todo.name ?? "Unknown")
+                .fontWeight(.semibold)
               
               Spacer()
               
               Text(todo.priority ?? "Unknown")
+                .font(.footnote)
+                .foregroundColor(Color(UIColor.systemGray2))
+                .padding(3)
+                .frame(minWidth: 62)
+                .overlay(Capsule().stroke(Color(UIColor.systemGray2), lineWidth: 0.75)
+                )
             }
+            .padding(.vertical, 10)
           }
           .onDelete(perform: deleteTodo)
         }
         .navigationBarTitle("Todo", displayMode: .inline)
-        .navigationBarItems(leading: EditButton(),
+        .navigationBarItems(leading: EditButton().accentColor(themes[self.theme.themeSettings].themeColor),
                             trailing:
                               Button(action: {
                                 self.showingSettingsView.toggle()
@@ -42,6 +56,7 @@ struct ContentView: View {
                                 Image(systemName: "gear")
                                   .imageScale(.large)
                               }
+                              .accentColor(themes[self.theme.themeSettings].themeColor)
                               .sheet(isPresented: $showingSettingsView){
                                 SettingsView().environmentObject(self.iconSettings)
                               }
@@ -65,11 +80,13 @@ struct ContentView: View {
               .background(Circle().fill(Color("ColorBase")))
               .frame(width: 48, height: 48, alignment: .center)
           }
+          .accentColor(themes[self.theme.themeSettings].themeColor)
         }
         .padding(.bottom, 15)
         .padding(.trailing, 15), alignment: .bottomTrailing
       )
     }
+    .navigationViewStyle(StackNavigationViewStyle())
   }
   
   // For Deleting Item
@@ -83,6 +100,18 @@ struct ContentView: View {
       } catch{
         print(error)
       }
+    }
+  }
+  private func colorize(priority: String) -> Color {
+    switch priority {
+    case "High":
+      return .pink
+    case "Normal":
+      return .green
+    case "Low":
+      return .blue
+    default:
+      return .gray
     }
   }
 }
